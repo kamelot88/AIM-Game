@@ -58,12 +58,19 @@ function setTime(value) {
 function finishGame() {
     timeEl.parentNode.classList.add('hide');
     board.removeEventListener('click', clickBoard);
-    board.innerHTML = `<h1>Cчёт: <span class="primary">${score}</span></h1>`;
+    board.innerHTML = `<h1>Score: <span class="primary">${score}</span><br>
+    <a href="#" class="reload">Try again</a></h1>`;
+    // document.querySelector('.again').style.display = 'block';
+    document.querySelector('.reload').addEventListener('click', () => {
+        location.reload(); 
+        return false;
+    })
 }
+
 
 function createRandomCircle() {
     const circle = document.createElement('div');
-    let size = getRandomNumber(1, 60);
+    let size = getRandomNumber(4, 40);
     const {width, height} = board.getBoundingClientRect();
     const x = getRandomNumber(0, width - size);
     const y = getRandomNumber(0, height - size);
@@ -78,7 +85,7 @@ function createRandomCircle() {
 }
 
 function getRandomColor() {
-    let colors = ['linear-gradient(90deg,#1a0505,#670f0f,#a01603)', 'linear-gradient(90deg,#9a13d7,#6965eb,#11c7e9)', 'linear-gradient(90deg,#e38bbc,#eca3cb,#cccdd2,#ebecef)', 'linear-gradient(90deg,#31111c,#e4282a,#f3eb63,#d52827,#110a13)', 'linear-gradient(90deg,#b3650c,#ff860d,#cc0081)', 'linear-gradient(90deg,#ffff00,#bb2c40,#b7048c)'];
+    let colors = ['red', 'yellowgreen', 'yellow', 'white', 'blue', 'purple'];
     let index = Math.floor(Math.random() * colors.length);
     return colors[index];
 }
